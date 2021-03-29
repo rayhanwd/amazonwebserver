@@ -8,14 +8,14 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 const MongoClient = require('mongodb').MongoClient;
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@amazonwebcluster.i5q99.mongodb.net/${process.env.DB_Name}?retryWrites=true&w=majority`;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@amazonwebcluster.i5q99.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
-const productsCollection = client.db(`${process.env.DB_Name}`).collection("Amazonwebdata");
+const productsCollection = client.db(`${process.env.DB_NAME}`).collection("Amazonwebdata");
 
   //other
 
-const ordersCollection = client.db(`${process.env.DB_Name}`).collection("productdata");
+const ordersCollection = client.db(`${process.env.DB_NAME}`).collection("productdata");
  
 app.post("/addProduct",(req,res) => {
 const product =req.body;
